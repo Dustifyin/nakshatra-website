@@ -2,18 +2,18 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #f8f8f8;
+    background: #f9f9f9;
     color: #333;
   }
   .navbar {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem 2rem;
-    background: #222;
+    background-color: #222;
   }
   .logo {
-    height: 50px;
+    height: 60px;
   }
   .nav-links {
     list-style: none;
@@ -30,25 +30,40 @@ body {
   }
   .cta-button {
     background: #00aaff;
-    padding: 0.5rem 1rem;
     color: #fff;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
     text-decoration: none;
   }
   .hero {
-    background: #eee;
+    background-color: #eee;
+    padding: 3rem 2rem;
     text-align: center;
-    padding: 4rem 2rem;
+  }
+  .hero h1 {
+    margin-bottom: 0.5rem;
   }
   .content {
     max-width: 800px;
     margin: 2rem auto;
-    padding: 1rem;
     background: white;
+    padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 0 10px #ccc;
   }
-  .product-list {
-    padding-left: 20px;
+  .button {
+    display: inline-block;
+    background-color: #00aaff;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 1rem;
+  }
+  .footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #222;
+    color: #fff;
   }
   
