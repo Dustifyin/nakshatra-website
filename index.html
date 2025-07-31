@@ -8,19 +8,26 @@
 </head>
 <body>
 
-  <!-- Navbar with Hamburger Menu -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo-container">
-      <img src="Naklogo.jpg" alt="Logo" class="logo" />
+      <img src="naklogo.jpg" alt="Nakshathra Logo" class="logo" />
     </div>
 
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="nav-actions">
+      <a href="booking.html" class="book-btn">Book Now</a>
+      <button class="dark-toggle" onclick="toggleDarkMode()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+        </svg>
+      </button>
     </div>
 
-    <ul class="nav-links" id="navLinks">
+    <label for="menu-toggle" class="menu-icon">☰</label>
+    <input type="checkbox" id="menu-toggle" />
+
+    <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="products.html">Products</a></li>
@@ -28,16 +35,34 @@
     </ul>
   </nav>
 
-  <!-- Your main page content below -->
-  <section>
-    <h1>Welcome to Nakshathra Enterprises</h1>
-    <p>Sambrani and Camphor Manufacturer and Distributor</p>
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>SHREENIVASA Enterprises</h1>
+    <h2>NAKSHATRA NATURAL CUP SAMBRANI AND CAMPHOR</h2>
+    <p><strong>MANUFACTURER AND DISTRIBUTOR</strong></p>
+    <p class="tagline">Bringing Pure, Traditional Fragrance to Your Home</p>
+  </header>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>About Us</h2>
+    <p>Welcome to Nakshathra Cup Sambrani. We are a family-run sambrani manufacturing unit located in Laxmipura Village, Bannerghatta Main Road, Bangalore, dedicated to bringing pure, traditional fragrance to every home at affordable prices.</p>
+    <p>For the past 5 years, we have been crafting high-quality cup sambrani using natural resins and herbs, ensuring long-lasting, rich fragrance for your pooja, meditation, and home cleansing needs.</p>
+    <p>We believe purity and tradition should be accessible to everyone, and we take pride in supporting local workers while maintaining consistent quality in every cup.</p>
+    <p><em>✨ Nakshathra Cup Sambrani: Bringing purity, peace, and tradition into your home every day.</em></p>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="mission">
+    <h2>We Deliver Pure Sambrani Fragrance with Care and Quality</h2>
+    <p>We started as a small two-person unit crafting pure cup sambrani for our neighborhood, driven by a dedication to bring traditional fragrance into homes.</p>
+    <p>Over time, we expanded into a larger team, producing a wider range of sambrani variants at affordable prices while maintaining quality and purity.</p>
+    <p>Whether it’s for your daily pooja, meditation, or cleansing your home, we ensure that every cup is made with care, providing a long-lasting, calming fragrance to your space.</p>
   </section>
 
   <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById("navLinks");
-      navLinks.classList.toggle("active");
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
     }
   </script>
 
