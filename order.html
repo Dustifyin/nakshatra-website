@@ -6,73 +6,83 @@
   <title>Order | Nakshathra Enterprises</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .products {
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      padding: 40px 20px 0;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #222;
+      padding: 10px 20px;
     }
-
-    .product-card {
-      max-width: 250px;
-      border: 1px solid #ddd;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      padding: 20px;
-      text-align: center;
-      background-color: #fff;
+    .navbar .logo {
+      height: 50px;
     }
-
-    .product-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      margin-bottom: 15px;
+    .navbar .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 15px;
     }
-
-    .product-card h3 {
-      margin-bottom: 8px;
-      font-size: 1.2rem;
-    }
-
-    .product-card p {
-      font-size: 1rem;
-      color: #007bff;
+    .navbar .nav-links li a, .cta-button {
+      color: white;
+      text-decoration: none;
       font-weight: bold;
     }
-
-    @media (max-width: 600px) {
-      .products {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .cta-button {
-        display: block;
-        margin-top: 10px;
-      }
+    .cta-button {
+      background-color: #007bff;
+      padding: 8px 16px;
+      border-radius: 8px;
     }
-
-    .price-breakdown {
-      background-color: #f9f9f9;
+    section.content {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 20px;
       border: 1px solid #ddd;
-      padding: 15px;
-      margin-top: 20px;
-      border-radius: 10px;
+      border-radius: 12px;
+      background-color: #f9f9f9;
     }
-
-    .price-breakdown p {
-      margin: 6px 0;
-      font-size: 1rem;
+    form label {
+      display: block;
+      margin: 10px 0 5px;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    #customQuantity {
+      display: none;
+    }
+    #fragrance-section {
+      display: none;
+    }
+    #totalDisplay {
+      margin-top: 15px;
+      font-weight: bold;
+      color: green;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
   <nav class="navbar">
     <img src="images/logo.jpg" class="logo" alt="Nakshathra Logo" />
-    <label for="menu-toggle" class="menu-icon">☰</label>
-    <input type="checkbox" id="menu-toggle" />
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
@@ -82,21 +92,9 @@
     <a href="order.html" class="cta-button">Order Now</a>
   </nav>
 
-  <!-- Product Display Section -->
-  <section class="products">
-    <div class="product-card">
-      <h3>Sambrani Cup</h3>
-      <p>₹48 / Box</p>
-    </div>
-    <div class="product-card">
-      <h3>Camphor</h3>
-      <p>₹800 / Kilogram</p>
-    </div>
-  </section>
-
   <!-- Order Form Section -->
   <section class="content">
-    <form action="https://formsubmit.co/gaganavvenkatesh@gmail.com" method="POST" id="orderForm">
+    <form action="https://formsubmit.co/gaganavvenkatesh@gmail.com" method="POST" onsubmit="return validateForm();">
       <h2 style="text-align:center;">Place Your Order</h2>
 
       <label for="name">Name:</label>
@@ -113,73 +111,114 @@
         <option value="">--Choose a product--</option>
         <option value="Sambrani">Sambrani</option>
         <option value="Camphor">Camphor</option>
-        <option value="Both">Both</option>
       </select>
+
+      <div id="fragrance-section">
+        <label for="fragrance">Choose Fragrance:</label>
+        <select id="fragrance" name="Fragrance">
+          <option value="">--Select fragrance--</option>
+          <option value="Nakshata Natural Cup Sambrani">Nakshata Natural Cup Sambrani</option>
+          <option value="Nakshata Natural Pineapple Cup Sambrani">Nakshata Natural Pineapple Cup Sambrani</option>
+          <option value="Nakshatra Loban + Cow Dung Cup Sambrani">Nakshatra Loban + Cow Dung Cup Sambrani</option>
+          <option value="Nakshata Rose Cup Sambrani">Nakshata Rose Cup Sambrani</option>
+          <option value="Nakshata 6 Flavours Cup Sambrani">Nakshata 6 Flavours Cup Sambrani</option>
+          <option value="Nakshata Sandal + Cow Dung Cup Sambrani">Nakshata Sandal + Cow Dung Cup Sambrani</option>
+          <option value="Nakshata Rose + Loban Cup Sambrani">Nakshata Rose + Loban Cup Sambrani</option>
+          <option value="Nakshata Loban Cup Sambrani">Nakshata Loban Cup Sambrani</option>
+        </select>
+      </div>
 
       <label for="quantity">Quantity:</label>
       <select id="quantity" name="Quantity" required>
         <option value="">--Select quantity--</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="5">5</option>
-        <option value="10">10</option>
+        <option value="1">1 Box</option>
+        <option value="2">2 Boxes</option>
+        <option value="3">3 Boxes</option>
+        <option value="5">5 Boxes</option>
+        <option value="10">10 Boxes</option>
+        <option value="custom">Custom</option>
       </select>
+
+      <input type="number" id="customQuantity" placeholder="Enter custom quantity" min="1" />
 
       <label for="address">Delivery Address:</label>
       <textarea id="address" name="Address" rows="4" required></textarea>
 
-      <div class="price-breakdown">
-        <p><strong>Base Price:</strong> ₹<span id="basePrice">0.00</span></p>
-        <p><strong>GST (5%):</strong> ₹<span id="gstAmount">0.00</span></p>
-        <p><strong>Total Price (incl. GST):</strong> ₹<span id="totalPrice">0.00</span></p>
-      </div>
+      <div id="totalDisplay">Total Price: ₹0.00 (Incl. 18% GST)</div>
 
       <input type="hidden" name="_next" value="thankyou.html">
-      <input type="hidden" id="totalPriceInput" name="Total Price" />
-
       <button type="submit">Submit Order</button>
     </form>
   </section>
 
+  <!-- JavaScript -->
   <script>
-    const productSelect = document.getElementById('product');
-    const quantitySelect = document.getElementById('quantity');
-    const basePriceSpan = document.getElementById('basePrice');
-    const gstAmountSpan = document.getElementById('gstAmount');
-    const totalPriceSpan = document.getElementById('totalPrice');
-    const totalPriceInput = document.getElementById('totalPriceInput');
+    const productEl = document.getElementById("product");
+    const quantityEl = document.getElementById("quantity");
+    const customQtyEl = document.getElementById("customQuantity");
+    const totalEl = document.getElementById("totalDisplay");
+    const fragranceSection = document.getElementById("fragrance-section");
+    const fragranceEl = document.getElementById("fragrance");
 
     const prices = {
-      Sambrani: 48,
       Camphor: 800,
-      Both: 848
+      "Nakshata Natural Cup Sambrani": 48,
+      "Nakshata Natural Pineapple Cup Sambrani": 50,
+      "Nakshatra Loban + Cow Dung Cup Sambrani": 52,
+      "Nakshata Rose Cup Sambrani": 49,
+      "Nakshata 6 Flavours Cup Sambrani": 54,
+      "Nakshata Sandal + Cow Dung Cup Sambrani": 55,
+      "Nakshata Rose + Loban Cup Sambrani": 53,
+      "Nakshata Loban Cup Sambrani": 51
     };
 
-    function calculatePrices() {
-      const product = productSelect.value;
-      const quantity = parseInt(quantitySelect.value);
+    productEl.addEventListener("change", () => {
+      const isSambrani = productEl.value === "Sambrani";
+      fragranceSection.style.display = isSambrani ? "block" : "none";
+      calculateTotal();
+    });
 
-      if (!product || isNaN(quantity)) {
-        basePriceSpan.textContent = '0.00';
-        gstAmountSpan.textContent = '0.00';
-        totalPriceSpan.textContent = '0.00';
-        totalPriceInput.value = '';
+    fragranceEl.addEventListener("change", calculateTotal);
+    quantityEl.addEventListener("change", () => {
+      customQtyEl.style.display = quantityEl.value === "custom" ? "block" : "none";
+      calculateTotal();
+    });
+    customQtyEl.addEventListener("input", calculateTotal);
+
+    function calculateTotal() {
+      const product = productEl.value;
+      let qty = parseInt(quantityEl.value);
+      if (quantityEl.value === "custom") {
+        qty = parseInt(customQtyEl.value) || 0;
+      }
+      if (!qty || !product) {
+        totalEl.innerText = "Total Price: ₹0.00 (Incl. 18% GST)";
         return;
       }
 
-      const base = prices[product] * quantity;
-      const gst = base * 0.05;
-      const total = base + gst;
+      let basePrice = 0;
+      if (product === "Camphor") {
+        basePrice = prices.Camphor;
+      } else if (product === "Sambrani") {
+        const fragrance = fragranceEl.value;
+        basePrice = prices[fragrance] || 0;
+      }
 
-      basePriceSpan.textContent = base.toFixed(2);
-      gstAmountSpan.textContent = gst.toFixed(2);
-      totalPriceSpan.textContent = total.toFixed(2);
-      totalPriceInput.value = '₹' + total.toFixed(2);
+      const subtotal = basePrice * qty;
+      const gst = subtotal * 0.18;
+      const total = subtotal + gst;
+
+      totalEl.innerText = `Total Price: ₹${total.toFixed(2)} (Incl. 18% GST)`;
     }
 
-    productSelect.addEventListener('change', calculatePrices);
-    quantitySelect.addEventListener('change', calculatePrices);
+    function validateForm() {
+      const product = productEl.value;
+      if (product === "Sambrani" && !fragranceEl.value) {
+        alert("Please select a fragrance for Sambrani.");
+        return false;
+      }
+      return true;
+    }
   </script>
 </body>
 </html>
