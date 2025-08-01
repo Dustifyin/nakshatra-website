@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Order | Nakshathra Enterprises</title>
   <link rel="stylesheet" href="style.css" />
   <style>
@@ -42,51 +42,29 @@
       font-weight: bold;
     }
 
-    .content {
-      padding: 30px 20px;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .content form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-    }
-
-    .content form input,
-    .content form select,
-    .content form textarea {
-      padding: 10px 12px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-
-    .content form button {
-      padding: 12px;
-      font-size: 1rem;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .content form button:hover {
-      background-color: #0056b3;
-    }
-
     @media (max-width: 600px) {
       .products {
         flex-direction: column;
         align-items: center;
       }
+
+      .cta-button {
+        display: block;
+        margin-top: 10px;
+      }
+    }
+
+    .price-breakdown {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+
+    .price-breakdown p {
+      margin: 6px 0;
+      font-size: 1rem;
     }
   </style>
 </head>
@@ -118,7 +96,7 @@
 
   <!-- Order Form Section -->
   <section class="content">
-    <form action="https://formsubmit.co/gaganavvenkatesh@gmail.com" method="POST">
+    <form action="https://formsubmit.co/gaganavvenkatesh@gmail.com" method="POST" id="orderForm">
       <h2 style="text-align:center;">Place Your Order</h2>
 
       <label for="name">Name:</label>
@@ -141,22 +119,67 @@
       <label for="quantity">Quantity:</label>
       <select id="quantity" name="Quantity" required>
         <option value="">--Select quantity--</option>
-        <option value="1 Box">1 Box</option>
-        <option value="2 Boxes">2 Boxes</option>
-        <option value="3 Boxes">3 Boxes</option>
-        <option value="5 Boxes">5 Boxes</option>
-        <option value="10+ Boxes">10+ Boxes</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
       </select>
 
       <label for="address">Delivery Address:</label>
       <textarea id="address" name="Address" rows="4" required></textarea>
 
-      <!-- Hidden fields for FormSubmit -->
+      <div class="price-breakdown">
+        <p><strong>Base Price:</strong> ₹<span id="basePrice">0.00</span></p>
+        <p><strong>GST (5%):</strong> ₹<span id="gstAmount">0.00</span></p>
+        <p><strong>Total Price (incl. GST):</strong> ₹<span id="totalPrice">0.00</span></p>
+      </div>
+
       <input type="hidden" name="_next" value="thankyou.html">
-      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" id="totalPriceInput" name="Total Price" />
 
       <button type="submit">Submit Order</button>
     </form>
   </section>
+
+  <script>
+    const productSelect = document.getElementById('product');
+    const quantitySelect = document.getElementById('quantity');
+    const basePriceSpan = document.getElementById('basePrice');
+    const gstAmountSpan = document.getElementById('gstAmount');
+    const totalPriceSpan = document.getElementById('totalPrice');
+    const totalPriceInput = document.getElementById('totalPriceInput');
+
+    const prices = {
+      Sambrani: 48,
+      Camphor: 800,
+      Both: 848
+    };
+
+    function calculatePrices() {
+      const product = productSelect.value;
+      const quantity = parseInt(quantitySelect.value);
+
+      if (!product || isNaN(quantity)) {
+        basePriceSpan.textContent = '0.00';
+        gstAmountSpan.textContent = '0.00';
+        totalPriceSpan.textContent = '0.00';
+        totalPriceInput.value = '';
+        return;
+      }
+
+      const base = prices[product] * quantity;
+      const gst = base * 0.05;
+      const total = base + gst;
+
+      basePriceSpan.textContent = base.toFixed(2);
+      gstAmountSpan.textContent = gst.toFixed(2);
+      totalPriceSpan.textContent = total.toFixed(2);
+      totalPriceInput.value = '₹' + total.toFixed(2);
+    }
+
+    productSelect.addEventListener('change', calculatePrices);
+    quantitySelect.addEventListener('change', calculatePrices);
+  </script>
 </body>
 </html>
