@@ -2,51 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Order Now | Nakshathra</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order | Nakshathra Enterprises</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <nav class="navbar">
-    <img src="images/logo.jpg" class="logo" alt="Nakshathra Logo" />
-    <label for="menu-toggle" class="menu-icon">☰</label>
+    <img src="Naklogo.jpg" alt="Logo" class="logo" />
+    <label for="menu-toggle" class="menu-icon">&#9776;</label>
     <input type="checkbox" id="menu-toggle" />
-
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="products.html">Products</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
-
     <a href="order.html" class="cta-button">Order Now</a>
   </nav>
 
   <section class="content">
-    <h2>Place Your Order</h2>
     <form action="https://formsubmit.co/gaganavvenkatesh@gmail.com" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <input type="text" name="phone" placeholder="Phone / WhatsApp Number" required />
+      <h2 style="text-align:center;">Place Your Order</h2>
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="Name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="Email" required>
+
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="Phone" required>
 
       <label for="product">Select Product:</label>
-      <select name="product" id="product" required>
-        <option value="" disabled selected>Select a product</option>
-        <option value="Sambrani Cups">Sambrani Cups</option>
-        <option value="Camphor Tablets">Camphor Tablets</option>
-        <option value="Other">Other (mention in message)</option>
+      <select id="product" name="Product" required>
+        <option value="">--Choose a product--</option>
+        <option value="Sambrani">Sambrani</option>
+        <option value="Camphor">Camphor</option>
+        <option value="Both">Both</option>
       </select>
 
-      <input type="number" name="quantity" placeholder="Quantity" min="1" required />
+      <label for="quantity">Quantity:</label>
+      <select id="quantity" name="Quantity" required>
+        <option value="">--Select quantity--</option>
+        <option value="1 Box">1 Box</option>
+        <option value="2 Boxes">2 Boxes</option>
+        <option value="3 Boxes">3 Boxes</option>
+        <option value="5 Boxes">5 Boxes</option>
+        <option value="10+ Boxes">10+ Boxes</option>
+      </select>
 
-      <textarea name="message" placeholder="Additional Details (Fragrance, Address, etc.)" rows="4"></textarea>
+      <label for="address">Delivery Address:</label>
+      <textarea id="address" name="Address" rows="4" required></textarea>
 
-      <input type="hidden" name="_subject" value="New Product Order from Website" />
-      <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_template" value="table" />
-      <input type="hidden" name="_next" value="thankyou.html" />
+      <!-- Hidden input to redirect to thankyou.html -->
+      <input type="hidden" name="_next" value="thankyou.html">
 
-      <button type="submit">Place Order</button>
+      <button type="submit">Submit Order</button>
     </form>
   </section>
 </body>
